@@ -24,7 +24,7 @@
       <hr>
 
       <% String nomeStr=request.getParameter("nome"); String precoStr=request.getParameter("preco"); if (nomeStr !=null
-        && precoStr !=null) { DAO dao=new DAO(); out.println("teste"); double preco=Double.parseDouble(precoStr);
+        && precoStr !=null) { inserirProdutosDAO dao=new inserirProdutosDAO(); out.println("Produto Inserido no Banco de Dados"); double preco=Double.parseDouble(precoStr);
         dao.inserirDados(nomeStr, preco); } %>
     </form>
   </body>

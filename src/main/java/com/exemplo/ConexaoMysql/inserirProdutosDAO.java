@@ -4,7 +4,7 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.SQLException;
 
-public class DAO {
+public class inserirProdutosDAO {
 
   public void inserirDados(String nome, double preco) {
     String sql = "INSERT INTO produtos (nome, preco) VALUES (?,?);";
