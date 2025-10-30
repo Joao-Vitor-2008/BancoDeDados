@@ -1,5 +1,5 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"
-  import="com.exemplo.ConexaoMysql.DAO" %>
+  import="com.exemplo.ConexaoMysql.inserirProdutosDAO" %>
   <!DOCTYPE html>
   <html lang="en">
 
@@ -24,7 +24,7 @@
       <hr>
 
       <% String nomeStr=request.getParameter("nome"); String precoStr=request.getParameter("preco"); if (nomeStr !=null
-        && precoStr !=null) { inserirProdutosDAO dao=new inserirProdutosDAO(); out.println("Produto Inserido no Banco de Dados"); double preco=Double.parseDouble(precoStr);
+        && precoStr !=null) { InserirProdutosDAO dao=new InserirProdutosDAO(); out.println("Produto Inserido no Banco de Dados"); double preco=Double.parseDouble(precoStr);
         dao.inserirDados(nomeStr, preco); } %>
     </form>
   </body>
