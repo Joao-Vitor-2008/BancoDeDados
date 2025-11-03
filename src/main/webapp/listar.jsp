@@ -11,6 +11,7 @@
   </head>
 
   <body>
+
     <h2>Listar</h2>
     <div>
       <a href="index.html">Início</a>
@@ -18,15 +19,34 @@
     </div>
     <br>
     <hr><br>
-    <% ListarProdutosDAO listarProdutos=new ListarProdutosDAO(); List<Produto> lista = listarProdutos.listarDados();
+    <% ListarProdutosDAO listarProdutos=new ListarProdutosDAO(); List<Produto> lista = listarProdutos.listarDados(); %>
 
-      for (Produto produto : lista) {
-      %>
-      <p><b>
-          <%= produto.getNome() %>
-        </b> - R$ <%= produto.getPreco() %>
-      </p>
-      <% } %>
+      <table border="1">
+
+        <tr>
+          <th>Id</th>
+          <th>Nome</th>
+          <th>Preço</th>
+        </tr>
+
+        <% for (Produto produto : lista) { %>
+
+          <tr>
+            <td>
+              <%= produto.getId() %>
+            </td>
+
+            <td>
+              - <%= produto.getNome() %>
+            </td>
+
+            <td>
+              - R$ <%= produto.getPreco() %>
+            </td>
+          </tr>
+
+          <% } %>
+      </table>
   </body>
 
   </html>
