@@ -9,7 +9,7 @@ public class InserirProdutosDAO {
   public void inserirDados(String nome, double preco) {
     String sql = "INSERT INTO produtos (nome, preco) VALUES (?,?);";
 
-    try (Connection conn = ConexaoBD.getConnection();
+    try (Connection conn = new ConexaoBD().getConnection();
         PreparedStatement stmt = conn.prepareStatement(sql);) {
 
       stmt.setString(1, nome);

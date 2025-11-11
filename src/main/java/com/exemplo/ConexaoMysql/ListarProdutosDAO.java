@@ -15,7 +15,7 @@ public class ListarProdutosDAO {
 
     String sql = "SELECT id, nome, preco FROM produtos;";
 
-    try (Connection conn = ConexaoBD.getConnection();
+    try (Connection conn = new ConexaoBD().getConnection();
         PreparedStatement stmt = conn.prepareStatement(sql);
         ResultSet result = stmt.executeQuery();) {
 

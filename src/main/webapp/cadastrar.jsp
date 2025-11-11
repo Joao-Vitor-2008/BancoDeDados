@@ -16,7 +16,7 @@
     <div>
       <a href="index.html">Inicio</a>
       <a href="listar.jsp">Listar Produtos</a>
-    </div>
+    </div> <br>
 
 
     <form method="post">
@@ -24,7 +24,7 @@
       <input type="text" name="nome" required> <br>
 
       <label>Preço</label>
-      <input type="number" name="preco" required> <br> <br>
+      <input type="number" name="preco" required> <br> <br> <br>
 
       <input type="submit" value="Enviar">
 

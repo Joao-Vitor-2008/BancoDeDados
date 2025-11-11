@@ -2,49 +2,39 @@ package com.exemplo.ConexaoMysql;
 
 import java.sql.Connection;
 import java.sql.SQLException;
-import java.sql.DriverManager;
+
+import io.github.cdimascio.dotenv.Dotenv;
+import com.zaxxer.hikari.HikariConfig;
+import com.zaxxer.hikari.HikariDataSource;
 
 public class ConexaoBD {
-  private static final String DRIVER = "com.mysql.cj.jdbc.Driver";
-  private static final String USER = "admin";
-  private static final String PASSWORD = "senha";
-  private static final String HOST = "localhost";
-  private static final String PORT = "3306";
-  private static final String DATABASE = "loja";
-  private static final String URL = "jdbc:mysql://" + HOST + ":" + PORT + "/" + DATABASE
-      + "?useSSL=false&serverTimezone=UTC";
 
-  private static Connection connection;
+  private static final Dotenv dotenv = Dotenv.configure().filename("dados.env").load();
 
-  public static Connection getConnection() throws SQLException {
+  private static String DRIVER = "com.mysql.cj.jdbc.Driver";
+  private static String USER = dotenv.get("usuarioBD");
+  private static String PASSWORD = dotenv.get("senhaBD");
+  private static String URL = dotenv.get("url");
+
+  private static final HikariDataSource ds;
+
+  static {
+    HikariConfig config = new HikariConfig();
+    config.setJdbcUrl(URL);
+    config.setUsername(USER);
+    config.setPassword(PASSWORD);
+    config.setDriverClassName(DRIVER);
+    ds = new HikariDataSource(config);
+  }
+
+  public Connection getConnection() throws SQLException {
     try {
-      if (connection != null && !connection.isClosed()) {
-        return connection;
-      }
 
-      Class.forName(DRIVER);
-      connection = DriverManager.getConnection(URL, USER, PASSWORD);
-      return connection;
+      return ds.getConnection();
 
-    } catch (ClassNotFoundException e) {
-      e.printStackTrace();
     } catch (SQLException e) {
       e.printStackTrace();
     }
-
-    return connection;
+    return ds.getConnection();
   }
-
-  public static boolean closeConnection() {
-    try {
-      if (connection != null && !connection.isClosed()) {
-        connection.close();
-        return true;
-      }
-    } catch (SQLException e) {
-      e.printStackTrace();
-    }
-    return false;
-  }
-
 }
